@@ -1,0 +1,97 @@
+{% comment %} Start: Insert Algorithm {% endcomment %}
+// $a =null;
+// $arr = array('obi', 'pascal', 'banjuare');
+
+$db = mysqli_connect('localhost', 'root', '', 'test');
+
+---------------
+**Data Structure
+---------------
+$ar = array(
+    'table'=>'testdemo',
+    'col' => array('ua', 'ub', 'uc'),
+    'values'=>array("'obi'", "'pascal'", "'banjuare'")
+);
+
+--------------------------------------
+**Retrieving Data & Initializing Data
+----------------------------------
+$tble = $ar['table'];
+$col ='';
+$values = '';
+$col = implode(',', $ar['col']);
+$values = implode(',', $ar['values']);
+
+-------------------------
+**Testing To See outpu
+------------------------
+$sql = "INSERT INTO $tble($col) VALUES($values)";
+var_dump($sql);
+if(mysqli_query($db, $sql))
+{
+    echo 'successful';
+}
+else
+{
+    echo 'not successful';
+}
+
+------------------------------------------------------------------------------------------
+**Adding Quoutes to string overrieding Line 12, col 27, 39, 53 Where the values have to be 
+quoted inside the dubble quote
+-------------------------------------------------------------------------------------------
+function add_quoutes($array){
+    $data = [];
+    if(is_array($array))
+    {
+        foreach ($array as $key ) {
+            array_push($data, "'".$key."'");
+        }
+    }
+
+    //return data 
+    if(isset($data))
+    {
+        return $data;
+    }
+}
+$d = array('obi', 'pascal', 'banjuare');
+$a = add_quoutes($d);
+var_dump(implode(',', $a));
+{% comment %} End: Insert Algorithm {% endcomment %}
+
+{% comment %} Start: Select Wehere Algorithm {% endcomment %}
+**SELECT WHERE ALGORITHM**
+--------------------------
+
+Data Structure
+===============
+$data = array(
+    'table'=>'table_name',
+    'columns'=>array('col1', 'col2', 'col3',...'coln'),
+    'where'=>array(
+        'column_name',
+        array($vars,$vars, $vars) #array_max_size = 3
+    )
+);
+
+Retrieving Data From Data Structure
+====================================
+//initialize $vars
+table = columns = compare_col = vars = null;
+
+//table
+IF $data !== '' AND key_exist('table'):
+    table = $data['table'];
+
+//columns to Select
+IF $data !== '' AND key_exist('columns'):
+    columns = implode(',', $data['columns']);
+
+//compare_col to be in the where col placeholder
+IF $data !== '' AND key_exist('where'):
+    compare_col = where[0];
+    vars = where[1]
+    
+
+
